@@ -3,15 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Business;
 use App\Address;
-use App\Food;
-use App\Room;
-use App\Social;
-use App\Contact;
-use App\Image;
-
-class BusinessController extends Controller
+class BusinessAddressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +13,7 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        $a=Business::all()->first();
-        $address=Address::all()->first();
-        $room=Room::all()->first();
-        $food=Food::all()->first();
-        $social=Social::all()->first();
-        $contact=Contact::all()->first();
-        $image=Image::all()->first();
-       return view('panel_business.add_listing',['b'=>$a,'address'=>$address,'room'=>$room,'food'=>$food,'social'=>$social,'contact'=>$contact,'image'=>$image]);
+        //
     }
 
     /**
@@ -37,8 +23,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-       //  $a=Business::latest()->first();
-       // return view('panel_business.add_listing',['b'=>$a]);
+        //
     }
 
     /**
@@ -48,17 +33,22 @@ class BusinessController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        $b= Business::find(1);    
-        $b->user_id=1;
-        $b->business_name=$request->business_name;
-        $b->tag=$request->tag;
-        $b->keyword=$request->keyword;
-        $b->description=$request->description;
+    {
+        $b= Address::find(1);
+        $b->business_id=1;
+        $b->street_address=$request->street_address;
+        $b->city=$request->city;
+        $b->locality=$request->locality;
+        $b->state=$request->state;
+        $b->pincode=$request->pincode;
+        $b->map_url=$request->map_url;
+        $b->latitude=$request->latitude;
+        $b->longitude=$request->longitude;
         $b->save();
-       $msg = 'business is added';
+        $msg="Address added";
         return response()->json(array($msg),200);
-        
+        //  $a=Address::latest()->first();
+        // return view('panel_business.add_listing',['address'=>$a]);
     }
 
     /**

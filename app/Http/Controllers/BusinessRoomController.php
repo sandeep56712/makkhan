@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Business;
-use App\Address;
-use App\Food;
 use App\Room;
-use App\Social;
-use App\Contact;
-use App\Image;
-
-class BusinessController extends Controller
+use App\Food;
+class BusinessRoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +14,7 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        $a=Business::all()->first();
-        $address=Address::all()->first();
-        $room=Room::all()->first();
-        $food=Food::all()->first();
-        $social=Social::all()->first();
-        $contact=Contact::all()->first();
-        $image=Image::all()->first();
-       return view('panel_business.add_listing',['b'=>$a,'address'=>$address,'room'=>$room,'food'=>$food,'social'=>$social,'contact'=>$contact,'image'=>$image]);
+        //
     }
 
     /**
@@ -37,8 +24,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-       //  $a=Business::latest()->first();
-       // return view('panel_business.add_listing',['b'=>$a]);
+        //
     }
 
     /**
@@ -48,17 +34,22 @@ class BusinessController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        $b= Business::find(1);    
-        $b->user_id=1;
-        $b->business_name=$request->business_name;
-        $b->tag=$request->tag;
-        $b->keyword=$request->keyword;
-        $b->description=$request->description;
-        $b->save();
-       $msg = 'business is added';
+    {
+        $r=Room::find(1);
+        $r->room=$request->room;
+        $r->ac_room=$request->ac_room;
+        $r->non_ac_room=$request->non_ac_room;
+        $r->save();
+        $f=Food::find(1);
+        $f->food_offer=$request->food_offer;
+        $f->veg=$request->veg;
+        $f->non_veg=$request->non_veg;
+        $f->save();
+        $msg="Room and food added";
         return response()->json(array($msg),200);
-        
+
+
+
     }
 
     /**

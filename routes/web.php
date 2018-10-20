@@ -14,6 +14,12 @@
 
 Route::get('/', 'HomeController@index');
 Route::resource('listing','BusinessController');
+Route::resource('address','BusinessAddressController');
+Route::resource('room','BusinessRoomController');
+Route::resource('food','BusinessFoodController');
+Route::resource('social','BusinessSocialController');
+Route::resource('contact','BusinessContactController');
+Route::resource('image','BusinessImageController');
 
 
 
