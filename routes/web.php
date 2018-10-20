@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'HomeController@index');
+Route::resource('listing','BusinessController');
+
+
 
 Auth::routes();
 
